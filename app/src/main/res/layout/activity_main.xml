@@ -35,8 +35,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="Diary's Travel"
-                    android:textSize="30dp">
+                    android:text="@string/title"
+                    android:textSize="30sp">
 
                 </TextView>
 
@@ -70,7 +70,7 @@
                     android:gravity="center"
                     android:text="Paris"
                     android:textColor="@color/white"
-                    android:textSize="25dp">
+                    android:textSize="25sp">
 
                 </TextView>
 
@@ -82,7 +82,7 @@
                     android:gravity="bottom|end"
                     android:text="Juillet 2023"
                     android:textColor="@color/white"
-                    android:textSize="20dp">
+                    android:textSize="20sp">
 
                 </TextView>
 
@@ -103,9 +103,9 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Londre"
+                    android:text="Londres"
                     android:textColor="@color/white"
-                    android:textSize="25dp">
+                    android:textSize="25sp">
 
                 </TextView>
 
@@ -117,7 +117,7 @@
                     android:gravity="bottom|end"
                     android:text="Aout 2022"
                     android:textColor="@color/white"
-                    android:textSize="20dp">
+                    android:textSize="20sp">
 
                 </TextView>
 
@@ -140,7 +140,7 @@
                     android:gravity="center"
                     android:text="Montréal"
                     android:textColor="@color/white"
-                    android:textSize="25dp">
+                    android:textSize="25sp">
 
                 </TextView>
 
@@ -152,7 +152,7 @@
                     android:gravity="bottom|end"
                     android:text="Décembre 2021"
                     android:textColor="@color/white"
-                    android:textSize="20dp">
+                    android:textSize="20sp">
 
                 </TextView>
 
@@ -169,6 +169,10 @@
         android:clickable="true"
         app:layout_anchor="@+id/linearLayout"
         app:layout_anchorGravity="end|bottom"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:contentDescription="ic_input_add"
+        android:layout_margin="30dp"
+        app:backgroundTint="@color/colorAccent"
+        app:tint="@color/white"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
