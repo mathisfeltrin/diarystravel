@@ -181,7 +181,7 @@
         app:layout_anchorGravity="end|bottom"
         app:srcCompat="@android:drawable/ic_input_add"
         android:contentDescription="ic_input_add"
-        android:layout_margin="30dp"
+        android:layout_margin="20dp"
         app:backgroundTint="@color/colorAccent"
         app:tint="@color/white"/>
 
