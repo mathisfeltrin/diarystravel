@@ -35,4 +35,9 @@ class TravelAdapter: RecyclerView.Adapter<TravelAdapter.TravelHolder>(){
     override fun getItemCount(): Int {
         return 3
     }
+
+    //fun onItemClick(view: View)
+
+    //fun onLongItemClick(view: View): Boolean
+
 }
