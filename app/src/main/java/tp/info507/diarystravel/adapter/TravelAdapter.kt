@@ -1,11 +1,13 @@
 package tp.info507.diarystravel.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import tp.info507.diarystravel.R
+import tp.info507.diarystravel.activity.TravelActivity
 
 class TravelAdapter: RecyclerView.Adapter<TravelAdapter.TravelHolder>(){
     class TravelHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -21,9 +23,16 @@ class TravelAdapter: RecyclerView.Adapter<TravelAdapter.TravelHolder>(){
     override fun onBindViewHolder(holder: TravelHolder, position: Int) {
         holder.country.text = "Paris"
         holder.date.text = "octobre 2023"
+
+        holder.itemView.setOnClickListener {
+            // Action à effectuer lorsque l'élément est cliqué
+            val context = holder.itemView.context
+            val intent = Intent(context, TravelActivity::class.java)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return 3
     }
 }

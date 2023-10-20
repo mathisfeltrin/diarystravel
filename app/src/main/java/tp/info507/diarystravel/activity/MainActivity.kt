@@ -13,13 +13,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         val button:ImageButton = findViewById<ImageButton>(R.id.addButton)
 
         button.setOnClickListener {
             //Toast.makeText(applicationContext, "Coucou !", Toast.LENGTH_SHORT).show()
-            val intent = Intent(applicationContext, TravelActivity::class.java)
+            val intent = Intent(applicationContext, DialogActivity::class.java)
             startActivity(intent)
         }
+
 
         val list : RecyclerView = findViewById(R.id.travel_list)
         list.adapter = TravelAdapter()
