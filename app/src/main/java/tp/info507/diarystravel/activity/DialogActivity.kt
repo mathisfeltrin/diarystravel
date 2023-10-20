@@ -1,6 +1,5 @@
 package tp.info507.diarystravel.activity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -13,21 +12,21 @@ class DialogActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dialog)
 
-        val annuler = findViewById<TextView>(R.id.annuler)
+        val annul = findViewById<TextView>(R.id.annuler)
 
-        annuler.setOnClickListener {
+        annul.setOnClickListener {
             //Toast.makeText(applicationContext, "Coucou !", Toast.LENGTH_SHORT).show()
-            val intent = Intent(applicationContext, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
-        val valider = findViewById<TextView>(R.id.valider)
+        val valid = findViewById<TextView>(R.id.valider)
 
-        valider.setOnClickListener {
+        valid.setOnClickListener {
             val name = findViewById<EditText>(R.id.dialog_name);
-            Toast.makeText(applicationContext, name.getText().toString(), Toast.LENGTH_SHORT).show()
-            val intent = Intent(applicationContext, MainActivity::class.java)
-            startActivity(intent)
+            val date = findViewById<EditText>(R.id.dialog_date);
+            Toast.makeText(applicationContext, name.text.toString(), Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, date.text.toString(), Toast.LENGTH_SHORT).show()
+            finish()
         }
     }
 }
