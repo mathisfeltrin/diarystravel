@@ -11,6 +11,21 @@ import tp.info507.diarystravel.storage.TravelDataBaseStorage
 import tp.info507.diarystravel.storage.TravelStorage
 
 class DialogActivity : AppCompatActivity() {
+
+    private fun handleTravelInsertion(nom: String, date: String, localisation: String) {
+        val travel = Travel(
+            0, nom, date, localisation, description = "")
+
+        val travelStorage = TravelDataBaseStorage(this)
+        val test = travelStorage.insert(travel)
+
+        if (test != -1){
+            Toast.makeText(applicationContext, "Insertion réussie ! ;)", Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(applicationContext, "Insertion pas réussie ! :(", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dialog)
@@ -25,28 +40,17 @@ class DialogActivity : AppCompatActivity() {
         val valid = findViewById<TextView>(R.id.valider)
 
         valid.setOnClickListener {
-            val name = findViewById<EditText>(R.id.dialog_name);
-            val date = findViewById<EditText>(R.id.dialog_date);
+            val name = findViewById<EditText>(R.id.dialog_name).toString();
+            val date = findViewById<EditText>(R.id.dialog_date).toString();
+            val localisation = findViewById<EditText>(R.id.dialog_localisation).toString();
+
+            handleTravelInsertion(name,date,localisation)
 
 
 
-            Toast.makeText(applicationContext, name.text.toString(), Toast.LENGTH_SHORT).show()
-            Toast.makeText(applicationContext, date.text.toString(), Toast.LENGTH_SHORT).show()
+            //Toast.makeText(applicationContext, name.text.toString(), Toast.LENGTH_SHORT).show()
+            //Toast.makeText(applicationContext, date.text.toString(), Toast.LENGTH_SHORT).show()
             finish()
-        }
-    }
-
-    private fun handleTravelInsertion(nom: String, date: String, localisation: String) {
-        val travel = Travel(
-            0, nom, date, localisation, description = "")
-
-        val travelStorage = TravelDataBaseStorage(this)
-        val test = travelStorage.insert(travel)
-
-        if (test != -1){
-            Toast.makeText(applicationContext, "Insertion réussie ! ;)", Toast.LENGTH_SHORT).show()
-        }else{
-            Toast.makeText(applicationContext, "Insertion pas réussie ! :(", Toast.LENGTH_SHORT).show()
         }
     }
 }
