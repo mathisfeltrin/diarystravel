@@ -19,9 +19,9 @@ class TravelActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             //Toast.makeText(applicationContext, "Coucou !", Toast.LENGTH_SHORT).show()
-            //val intent = Intent(applicationContext, MainActivity::class.java)
-            //startActivity(intent)
-            finish()
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(intent)
+            //finish()
         }
 
         val image: ImageView = findViewById(R.id.travel_image)
