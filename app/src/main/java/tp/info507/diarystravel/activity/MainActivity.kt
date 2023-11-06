@@ -24,6 +24,6 @@ class MainActivity : AppCompatActivity() {
 
 
         val list : RecyclerView = findViewById(R.id.travel_list)
-        list.adapter = TravelAdapter()
+        list.adapter = TravelAdapter(applicationContext)
     }
 }

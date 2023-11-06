@@ -13,6 +13,8 @@ class TravelActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_travel)
 
+        // Il faut ajouter une variable travel = l'objet qui sert à choisir entre le json et le sql dans le cours du prof.
+
         val button: ImageView = findViewById<ImageButton>(R.id.backHome)
 
         button.setOnClickListener {

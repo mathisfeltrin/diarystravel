@@ -1,5 +1,6 @@
 package tp.info507.diarystravel.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import tp.info507.diarystravel.R
 import tp.info507.diarystravel.activity.TravelActivity
+import tp.info507.diarystravel.storage.TravelStorage
 
-class TravelAdapter: RecyclerView.Adapter<TravelAdapter.TravelHolder>(){
+class TravelAdapter(private val context: Context): RecyclerView.Adapter<TravelAdapter.TravelHolder>(){
     class TravelHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val country: TextView = itemView.findViewById(R.id.travel_country)
         val date: TextView = itemView.findViewById(R.id.travel_date)
@@ -21,8 +23,10 @@ class TravelAdapter: RecyclerView.Adapter<TravelAdapter.TravelHolder>(){
     }
 
     override fun onBindViewHolder(holder: TravelHolder, position: Int) {
-        holder.country.text = "Paris"
-        holder.date.text = "octobre 2023"
+        val travel = TravelStorage.get(context).findAll()[position]
+
+        holder.country.text = travel.localisation
+        holder.date.text = travel.date
 
         holder.itemView.setOnClickListener {
             // Action à effectuer lorsque l'élément est cliqué
@@ -33,11 +37,9 @@ class TravelAdapter: RecyclerView.Adapter<TravelAdapter.TravelHolder>(){
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return TravelStorage.get(context).size()
     }
 
-    //fun onItemClick(view: View)
 
-    //fun onLongItemClick(view: View): Boolean
 
 }
