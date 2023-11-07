@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "tp.info507.diarystravel"
-        minSdk = 27
+        minSdk = 28
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"

@@ -9,6 +9,8 @@ import tp.info507.diarystravel.R
 import tp.info507.diarystravel.adapter.TravelAdapter
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var list:RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -23,7 +25,12 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        val list : RecyclerView = findViewById(R.id.travel_list)
+        list = findViewById(R.id.travel_list)
         list.adapter = TravelAdapter(applicationContext)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        list.adapter?.notifyDataSetChanged()
     }
 }

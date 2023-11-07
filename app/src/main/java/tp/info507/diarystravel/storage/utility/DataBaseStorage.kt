@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
+import android.util.Log
 import tp.info507.diarystravel.helper.DataBaseHelper
 
 abstract class DataBaseStorage<T>(private val helper: SQLiteOpenHelper,private val table : String) : Storage<T> {
@@ -33,19 +34,21 @@ abstract class DataBaseStorage<T>(private val helper: SQLiteOpenHelper,private v
     }
 
     override fun findAll(): List<T> {
-        val list = arrayListOf<T>()
-        val cursor= helper.readableDatabase.query(table, null, null, null, null, null, null)
+        var list: MutableList<T> = ArrayList<T>()
+        var cursor = helper.readableDatabase.query(table, null, null, null, null, null, null)
 
-        if (cursor.moveToNext()){
-            list.add(cursorToObject(cursor))
+        if (cursor.moveToFirst()){
+            do {
+                list.add(cursorToObject(cursor))
+                Log.d("FINDALLBDD",cursorToObject(cursor).toString())
+            } while(cursor.moveToNext())
         }
         cursor.close()
         return list
     }
 
     override fun update(id: Int, obj: T) {
-        delete(id)
-        insert(obj)
+        helper.readableDatabase.update(table,objectToValues(obj),"${BaseColumns._ID}=?",arrayOf("$id"))
     }
 
     override fun delete(id: Int) {

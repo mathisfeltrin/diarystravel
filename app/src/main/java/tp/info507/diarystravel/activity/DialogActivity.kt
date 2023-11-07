@@ -40,9 +40,9 @@ class DialogActivity : AppCompatActivity() {
         val valid = findViewById<TextView>(R.id.valider)
 
         valid.setOnClickListener {
-            val name = findViewById<EditText>(R.id.dialog_name).toString();
-            val date = findViewById<EditText>(R.id.dialog_date).toString();
-            val localisation = findViewById<EditText>(R.id.dialog_localisation).toString();
+            val name = findViewById<EditText>(R.id.dialog_name).text.toString();
+            val date = findViewById<EditText>(R.id.dialog_date).text.toString();
+            val localisation = findViewById<EditText>(R.id.dialog_localisation).text.toString();
 
             handleTravelInsertion(name,date,localisation)
 

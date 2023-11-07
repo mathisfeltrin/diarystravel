@@ -1,17 +1,66 @@
 package tp.info507.diarystravel.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import org.w3c.dom.Text
 import tp.info507.diarystravel.R
+import tp.info507.diarystravel.model.Travel
+import tp.info507.diarystravel.storage.TravelStorage
+import android.provider.Settings
 
 class TravelActivity : AppCompatActivity() {
+    private lateinit var desc : EditText
+    private lateinit var item : Travel
+
+    /*
+    private fun askForPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (!Environment.isExternalStorageManager()) {
+                val intent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
+                startActivity(intent)
+            }
+        }
+    }
+
+    private fun checkPermission(permissions: Array<String>): Boolean {
+        var res = true
+        for (permission in permissions) {
+            if ((ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED)) {
+                if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+                    ActivityCompat.requestPermissions(this, permissions, 0)
+                }
+                res = false
+            }
+        }
+        return res
+    }*/
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_travel)
+
+        val id = intent.getIntExtra("identifiant",0)
+        item = TravelStorage.get(this).find(id)!!
+
+        var title : TextView = findViewById(R.id.travel_name)
+
+        desc = findViewById(R.id.travel_description)
+
+        title.text = item.name
+        desc.setText(item.description)
 
         // Il faut ajouter une variable travel = l'objet qui sert à choisir entre le json et le sql dans le cours du prof.
 
@@ -32,5 +81,13 @@ class TravelActivity : AppCompatActivity() {
             }
 
         image.setOnClickListener{takePhoto.launch(null)}
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        item.description = desc.text.toString()
+        Log.d("UPDATE",item.toString())
+        TravelStorage.get(this).update(item.id,item)
     }
 }
