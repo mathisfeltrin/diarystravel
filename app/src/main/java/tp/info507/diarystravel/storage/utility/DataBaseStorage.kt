@@ -40,7 +40,6 @@ abstract class DataBaseStorage<T>(private val helper: SQLiteOpenHelper,private v
         if (cursor.moveToFirst()){
             do {
                 list.add(cursorToObject(cursor))
-                Log.d("FINDALLBDD",cursorToObject(cursor).toString())
             } while(cursor.moveToNext())
         }
         cursor.close()

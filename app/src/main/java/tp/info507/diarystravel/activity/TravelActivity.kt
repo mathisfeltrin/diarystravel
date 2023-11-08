@@ -2,24 +2,19 @@ package tp.info507.diarystravel.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import org.w3c.dom.Text
+import androidx.appcompat.app.AppCompatActivity
 import tp.info507.diarystravel.R
 import tp.info507.diarystravel.model.Travel
 import tp.info507.diarystravel.storage.TravelStorage
-import android.provider.Settings
+
 
 class TravelActivity : AppCompatActivity() {
     private lateinit var desc : EditText
@@ -81,6 +76,17 @@ class TravelActivity : AppCompatActivity() {
             }
 
         image.setOnClickListener{takePhoto.launch(null)}
+
+        val buttonMap: ImageView = findViewById<ImageButton>(R.id.buttonMap)
+
+        buttonMap.setOnClickListener {
+            val address = item.localisation
+            val url = "https://www.google.fr/maps/place/$address/"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
+        }
+
+
     }
 
     override fun onStop() {

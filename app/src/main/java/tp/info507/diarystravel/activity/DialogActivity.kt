@@ -20,9 +20,9 @@ class DialogActivity : AppCompatActivity() {
         val test = travelStorage.insert(travel)
 
         if (test != -1){
-            Toast.makeText(applicationContext, "Insertion réussie ! ;)", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(applicationContext, "Insertion réussie ! ;)", Toast.LENGTH_SHORT).show()
         }else{
-            Toast.makeText(applicationContext, "Insertion pas réussie ! :(", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Erreur insertion ! :(", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -46,10 +46,6 @@ class DialogActivity : AppCompatActivity() {
 
             handleTravelInsertion(name,date,localisation)
 
-
-
-            //Toast.makeText(applicationContext, name.text.toString(), Toast.LENGTH_SHORT).show()
-            //Toast.makeText(applicationContext, date.text.toString(), Toast.LENGTH_SHORT).show()
             finish()
         }
     }
